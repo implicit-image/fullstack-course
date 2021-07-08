@@ -1,1 +1,1 @@
-# fullstack-course
+# My FullStackOpen submissions repository
