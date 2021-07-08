@@ -10,20 +10,23 @@ const Header = ({name}) => {
 }
 
 const Content = ({parts, exercises}) => {
-  let res = []
-  for (let i = 0; i < parts.length;i++) {
-    res.push({key: i, part: parts[i], exercise: exercises[i]})
-  }
 
   return (
-    res.map((elem) => {
-      return (
-        <p key={elem.key.toString()}>{elem.part} {elem.exercise}</p>
-      )
-    })
+    <>
+      <Part part={parts[0]} exercises={exercises[0]}/>
+      <Part part={parts[1]} exercises={exercises[1]}/>
+      <Part part={parts[2]} exercises={exercises[2]}/>
+    </>
   )
 }
 
+const Part = ({part, exercises}) => {
+  return (
+    <>
+      <p>{part} {exercises}</p>
+    </>
+  )
+}
 
 const Total = ({exercises}) => {
   return (
