@@ -33,7 +33,12 @@ const Part = ({name, exercises}) => {
 const Total = ({course}) => {
   return (
     <>
-      <p>Number of exercises {course.parts.map(p => p.exercises ).reduce((a, b) => a + b )}</p>
+      <p>Number of exercises {
+        course.parts
+              .map(p => p.exercises )
+              .reduce((a, b) => a + b )
+      }
+      </p>
     </>
   )
 }
