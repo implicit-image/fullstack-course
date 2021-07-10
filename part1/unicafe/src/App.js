@@ -31,17 +31,25 @@ const StatisticsPanel = ({ fields }) => {
         .map(f => f.value)
         .reduce((a, b) => a + b) * 100 / all
 
-
-  return (
-    <>
-      {fields.map( f => {
-        return (<Statistic field={f}/>)
-      })}
-      <p>all: {all}</p>
-      <p>average: {isNaN(average) ? 0 : average}</p>
-      <p>positive: {isNaN(positive) || !isFinite(positive) ? 0 : positive}%</p>
-    </>
-  )
+  if (all == 0) {
+    return (
+      <>
+        <p>No feedback given</p>
+      </>
+    )
+  }
+  else {
+    return (
+      <>
+        {fields.map( f => {
+          return (<Statistic field={f}/>)
+        })}
+        <p>all: {all}</p>
+        <p>average: {isNaN(average) ? 0 : average}</p>
+        <p>positive: {isNaN(positive) || !isFinite(positive) ? 0 : positive}%</p>
+      </>
+    )
+  }
 }
 
 
