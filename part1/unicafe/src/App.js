@@ -25,8 +25,7 @@ const StatisticsPanel = ({ fields }) => {
         .reduce((a, b) => a + b)
   const average = fields //(positive - negative) / sum
         .map(f => f.text == "bad" ? -1 * f.value : f.text == "good" ? 1 * f.value : 0)
-        .reduce((a, b) => a + b)
-        / all
+        .reduce((a, b) => a + b) / all
   const positive = fields
         .filter(f => f.text === "good")
         .map(f => f.value)
