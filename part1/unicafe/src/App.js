@@ -20,11 +20,27 @@ const SelectionPanel = ({ fields }) => {
 }
 
 const StatisticsPanel = ({ fields }) => {
+  const all = fields
+        .map(f => f.value)
+        .reduce((a, b) => a + b)
+  const average = fields //(positive - negative) / sum
+        .map(f => f.text == "bad" ? -1 * f.value : f.text == "good" ? 1 * f.value : 0)
+        .reduce((a, b) => a + b)
+        / all
+  const positive = fields
+        .filter(f => f.text === "good")
+        .map(f => f.value)
+        .reduce((a, b) => a + b) * 100 / all
+
+
   return (
     <>
       {fields.map( f => {
         return (<Statistic field={f}/>)
       })}
+      <p>all: {all}</p>
+      <p>average: {isNaN(average) ? 0 : average}</p>
+      <p>positive: {isNaN(positive) || !isFinite(positive) ? 0 : positive}%</p>
     </>
   )
 }
@@ -45,6 +61,10 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [all, setAll] = useState(0)
+  const [avg, setAvg] = useState(0)
+  const [positivePercent, setPositivePercent] = useState(0)
+
 
   const fields = [
     {
