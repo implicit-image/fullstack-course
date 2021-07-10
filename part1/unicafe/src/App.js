@@ -42,21 +42,22 @@ const StatisticsPanel = ({ fields }) => {
     return (
       <>
         {fields.map( f => {
-          return (<Statistic field={f}/>)
+          return (<Statistic text={f.text} value={f.value}/>)
         })}
-        <p>all: {all}</p>
-        <p>average: {isNaN(average) ? 0 : average}</p>
-        <p>positive: {isNaN(positive) || !isFinite(positive) ? 0 : positive}%</p>
+
+        <Statistic text={"all"} value={all}/>
+        <Statistic text={"average"} value={isNaN(average) ? 0 : average}/>
+        <Statistic text={"positive"} value={isNaN(positive) || !isFinite(positive) ? 0 : positive}/>
       </>
     )
   }
 }
 
 
-const Statistic = ({ field }) => {
+const Statistic = ({ text, value }) => {
   return (
     <>
-      <p>{field.text}: {field.value}</p>
+      <p>{text}: {value}{text=="positive" ? "%" : ""}</p>
     </>
   )
 }
@@ -89,7 +90,7 @@ const App = () => {
       value: bad,
       handler: () => setBad(bad+1)
     }
-  ]
+   ]
 
 
 
