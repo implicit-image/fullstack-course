@@ -1,19 +1,12 @@
 import { React, useState } from 'react'
+import Persons from './components/Persons'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
 import './App.css'
 
 
 
 
-const Numbers = ({ persons, search }) => {
-  return (
-    <div>
-      {persons
-        .filter(person => person.name.toLowerCase()
-                                .startsWith(search.toLowerCase()))
-      .map(({name, number}) => <li key={number}>{name} {number}</li>)}
-    </div>
-  )
-}
 
 
 const App = () => {
@@ -46,7 +39,6 @@ const App = () => {
       number: newNumber
     }
 
-
     if ((!persons.some(person => person.number === newPerson.number ))) {
       setPersons(persons.concat(newPerson))
       setNewName("")
@@ -60,35 +52,20 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <p>search name <input onChange={handleSearchChange}/>
-      </p>
+      <Filter onSearchChange={handleSearchChange}/>
       <h2>Add a new number</h2>
-      <form>
-        <div>
-          name
-          <input
-            value={newName} // so we can reset field content
-            onChange={handleNameChange}
-          />
-        </div>
-        <div>
-          number
-          <input
-            value={newNumber}
-            onChange={handleNumberChange}
-          />
-        </div>
-        <div>
-          <button
-            type="submit"
-            onClick={addNewPerson}
-          >
-            add
-          </button>
-        </div>
-      </form>
+      <PersonForm
+        nameValue={newName}
+        nameHandler={handleNameChange}
+        numberValue={newNumber}
+        numberHandler={handleNumberChange}
+        addPerson={addNewPerson}
+      />
       <h2>Numbers</h2>
-      <Numbers persons={persons} search={newSearch}/>
+      <Persons
+        persons={persons}
+        search={newSearch}
+      />
     </div>
   );
 }
