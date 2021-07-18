@@ -1,5 +1,4 @@
 import { React, useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
 
 
@@ -29,12 +28,20 @@ const App = () => {
 
   const addNewPerson = (event) => {
     event.preventDefault()
+
     const newPerson = {
       name: newName
     }
 
-    setPersons(persons.concat(newPerson))
-    setNewName("")
+
+    if ((!persons.some(person => person.name === newPerson.name ))) {
+      setPersons(persons.concat(newPerson))
+      setNewName("")
+    }
+    else {
+      alert(`${newName} is already in the phonebook`)
+    }
+
   }
 
   return (
