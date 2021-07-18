@@ -4,10 +4,13 @@ import './App.css'
 
 
 
-const Numbers = ({ persons }) => {
+const Numbers = ({ persons, search }) => {
   return (
     <div>
-    {persons.map(person => <li key={person.number}>{person.name} {person.number}</li>)}
+      {persons
+        .filter(person => person.name.toLowerCase()
+                                .startsWith(search.toLowerCase()))
+      .map(({name, number}) => <li key={number}>{name} {number}</li>)}
     </div>
   )
 }
@@ -20,6 +23,11 @@ const App = () => {
   ])
   const [newName, setNewName] = useState("")
   const [newNumber, setNewNumber] = useState("")
+  const [newSearch, setNewSearch] = useState("")
+
+  const handleSearchChange = (event) => {
+    setNewSearch(event.target.value)
+  }
 
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
@@ -50,18 +58,21 @@ const App = () => {
   }
 
   return (
-   <div>
+    <div>
       <h2>Phonebook</h2>
+      <p>search name <input onChange={handleSearchChange}/>
+      </p>
+      <h2>Add a new number</h2>
       <form>
         <div>
-          name:
+          name
           <input
             value={newName} // so we can reset field content
             onChange={handleNameChange}
           />
         </div>
         <div>
-          number:
+          number
           <input
             value={newNumber}
             onChange={handleNumberChange}
@@ -77,9 +88,9 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <Numbers persons={persons}/>
+      <Numbers persons={persons} search={newSearch}/>
     </div>
-      );
+  );
 }
 
 export default App;
