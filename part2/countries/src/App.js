@@ -9,7 +9,7 @@ const App = () => {
   const [search, setSearch] = useState("")
   const [response, setResponse] = useState([])
   const [results, setResults] = useState([])
-
+  const api_key = process.env.REACT_APP_API_KEY
 
   useEffect(() => {
     axios
@@ -38,7 +38,11 @@ const App = () => {
   return (
     <div>
       <Searchbox searchHandler={handleSearchChange}/>
-      <Results results={results} showDetailed={showDetailedView}/>
+      <Results
+        results={results}
+        showDetailed={showDetailedView}
+        api_key={api_key}
+      />
     </div>
   )
 }

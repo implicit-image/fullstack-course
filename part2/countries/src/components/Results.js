@@ -5,7 +5,7 @@ import SimpleCountryEntry from './SimpleCountryEntry'
 
 
 
-const Results = ({ results, showDetailed }) => {
+const Results = ({ results, showDetailed, api_key }) => {
 
   return (
     <ul>
@@ -19,7 +19,7 @@ const Results = ({ results, showDetailed }) => {
               showDetailed={showDetailed}
               key={country.numericCode}
             />)
-        : <DetailedCountryEntry country={results[0]} />
+          : <DetailedCountryEntry country={results[0]} api_key={api_key} />
       }
     </ul>
   )
