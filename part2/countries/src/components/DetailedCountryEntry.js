@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-const DetailedCountry = ({ country }) => {
+const DetailedCountryEntry = ({ country }) => {
   return (
     <div>
       <h1>{country.name}</h1>
@@ -24,4 +24,4 @@ const DetailedCountry = ({ country }) => {
   )
 }
 
-export default DetailedCountry
+export default DetailedCountryEntry

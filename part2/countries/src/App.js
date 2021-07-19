@@ -31,10 +31,14 @@ const App = () => {
                ))
   }
 
+  const showDetailedView = (country) => {
+    setResults([country])
+  }
+
   return (
     <div>
       <Searchbox searchHandler={handleSearchChange}/>
-      <Results results={results} search={search}/>
+      <Results results={results} showDetailed={showDetailedView}/>
     </div>
   )
 }
