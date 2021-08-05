@@ -2,7 +2,7 @@ import React from 'react'
 import Person from './Person'
 
 
-const Persons = ({persons, search}) => {
+const Persons = ({persons, search, deleter}) => {
   return (
     <div>
       {persons.filter(person => person
@@ -10,7 +10,7 @@ const Persons = ({persons, search}) => {
                       .startsWith(search.toLowerCase()))
               .map(({name, number}) =>
                 <p key={number}>
-                  <Person name={name} number={number} />
+                  <Person name={name} number={number} deleter={() => deleter(number)}/>
                 </p>)}
     </div>
   )

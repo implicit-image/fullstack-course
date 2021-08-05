@@ -18,6 +18,7 @@ const App = () => {
       .getAll()
       .then(re => {
         setPersons(re.data)
+        console.log(re.data)
       })
   }, [])
 
@@ -44,13 +45,37 @@ const App = () => {
     }
 
     if ((!persons.some(person => person.number === newPerson.number ))) {
-      setPersons(persons.concat(newPerson))
-      entryService.create(newPerson)
+      //setPersons(persons.concat(newPerson))
+      entryService
+        .create(newPerson)
+        .then(r => {
+          entryService
+            .getAll()
+            .then(res => {
+              setPersons(res.data)
+            })
+        })
       setNewName("")
       setNewNumber("")
     }
     else {
       alert(`${newNumber} is already in the phonebook`)
+    }
+  }
+
+  const deletePerson = (number) => {
+    const people = persons
+    const target = people.filter(person => person.number === number)[0]
+    if (window.confirm(`Delete ${target.name}?`)) {
+    entryService
+      .remove(target.id)
+      .then(r => setPersons(persons.filter(p => p.id !== target.id)))
+      .catch(r => {
+        console.log(r)
+      })
+    }
+    else {
+      return 0
     }
   }
 
@@ -70,6 +95,7 @@ const App = () => {
       <Persons
         persons={persons}
         search={newSearch}
+        deleter={deletePerson}
       />
     </div>
   );
