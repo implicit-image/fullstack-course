@@ -1,0 +1,10 @@
+
+
+.card {
+    height: 20em;
+    aspect-ratio: 9 / 16;
+    border: 0.4em solid #FFDD33;
+    border-radius: 0.5em;
+    margin: 1em;
+    padding: 1em;
+}
