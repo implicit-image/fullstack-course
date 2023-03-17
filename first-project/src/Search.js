@@ -3,10 +3,14 @@
 
 
 
-const Search = () => {
+const Search = ({ onchange }) => {
+
+
+
+
   return (
     <div>
-      Szukaj <input/>
+      Szukaj <input onChange={onchange}/>
     </div>
   )
 

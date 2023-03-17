@@ -14,19 +14,19 @@ const App = () => {
       img_link: 'none'
     },
     {
-      name: 'adam',
+      name: 'john',
       img_link: 'none'
     },
     {
-      name: 'adam',
+      name: 'john',
       img_link: 'none'
     },
     {
-      name: 'adam',
+      name: 'jonny',
       img_link: 'none'
     },
     {
-      name: 'adam',
+      name: 'jolene',
       img_link: 'none'
     },
     {
@@ -52,13 +52,15 @@ const App = () => {
   ]
 
 
+  const updateQuery = (event) => setQuery(event.target.value)
+
 
 
 
   return(
     <div className='App'>
-      <Search/>
-      <CardList people={people}/>
+      <Search onchange={updateQuery}/>
+      <CardList people={people} query={query}/>
     </div>
   )
 }
